@@ -12,11 +12,11 @@ function App() {
   if (error) return <p>Error : {error.message}</p>;
 
   return (
-    <div>
+    <ul className="collection">
       {data?.songs.map(s => (
-        <div key={s.id}>{s.title}</div>
+        <li className="collection-item" key={s.id}>{s.title}</li>
       ))}
-    </div>
+    </ul>
   )
 }
 
