@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider, } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import App from './App.tsx'
 import SongList from './components/SongList.tsx';
+import SongCreate from './components/SongCreate.tsx';
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: '/song-list',
         element: <SongList/>
+      },
+      {
+        path: '/song-create',
+        element: <SongCreate/>
       }
     ]
   },
