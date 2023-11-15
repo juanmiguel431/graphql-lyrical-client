@@ -1,12 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
-
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { createBrowserRouter, RouterProvider, } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import App from './App.tsx'
 import SongList from './components/SongList.tsx';
 
@@ -14,11 +9,13 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App/>,
+    children: [
+      {
+        path: '/song-list',
+        element: <SongList/>
+      }
+    ]
   },
-  {
-    path: '/song-list',
-    element: <SongList/>
-  }
 ]);
 
 const client = new ApolloClient({

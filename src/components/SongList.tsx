@@ -14,14 +14,14 @@ const SongList: React.FC = () => {
   if (error) return <p>Error : {error.message}</p>;
 
   return (
-    <>
+    <div>
       <Link to="/">Home Page</Link>
       <ul className="collection">
         {data?.songs.map(s => (
           <li className="collection-item" key={s.id}>{s.title}</li>
         ))}
       </ul>
-    </>
+    </div>
   )
 }
 
