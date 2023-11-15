@@ -12,11 +12,11 @@ const router = createBrowserRouter([
     element: <App/>,
     children: [
       {
-        path: '/song-list',
+        path: '/songs',
         element: <SongList/>
       },
       {
-        path: '/song-create',
+        path: '/songs/new',
         element: <SongCreate/>
       }
     ]

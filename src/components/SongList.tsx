@@ -15,12 +15,16 @@ const SongList: React.FC = () => {
 
   return (
     <div>
-      <Link to="/">Home Page</Link>
       <ul className="collection">
         {data?.songs.map(s => (
           <li className="collection-item" key={s.id}>{s.title}</li>
         ))}
       </ul>
+      <Link
+        to="/songs/new"
+        className="btn-floating btn-large red right">
+        <i className="material-icons">add</i>
+      </Link>
     </div>
   )
 }
