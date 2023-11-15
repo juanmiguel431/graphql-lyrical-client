@@ -1,6 +1,7 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { Song } from '../models';
+import { Link } from 'react-router-dom';
 
 type Response = {
   songs: Song[];
@@ -13,11 +14,14 @@ const SongList: React.FC = () => {
   if (error) return <p>Error : {error.message}</p>;
 
   return (
-    <ul className="collection">
-      {data?.songs.map(s => (
-        <li className="collection-item" key={s.id}>{s.title}</li>
-      ))}
-    </ul>
+    <>
+      <Link to="/">Home Page</Link>
+      <ul className="collection">
+        {data?.songs.map(s => (
+          <li className="collection-item" key={s.id}>{s.title}</li>
+        ))}
+      </ul>
+    </>
   )
 }
 

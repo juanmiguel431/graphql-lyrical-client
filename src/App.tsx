@@ -1,8 +1,10 @@
-import SongList from './components/SongList.tsx';
+import { Link } from 'react-router-dom';
 
 function App() {
   return (
-    <SongList />
+    <div className="container">
+      <Link to="/song-list">Song List</Link>
+    </div>
   )
 }
 
