@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
+import { fetchSongsQuery } from '../queries';
 
 const SongCreate: React.FC = () => {
   const [songTitle, setSongTitle] = useState('');
@@ -24,7 +25,11 @@ const SongCreate: React.FC = () => {
             return;
           }
 
-          await addSong({ variables: { title: title } });
+          await addSong({
+            variables: { title: title },
+            refetchQueries: [{ query: fetchSongsQuery }]
+          });
+
           navigate('/songs');
 
         } catch (e) {

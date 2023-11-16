@@ -1,14 +1,15 @@
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Song } from '../models';
 import { Link } from 'react-router-dom';
+import { fetchSongsQuery } from '../queries';
 
 type Response = {
   songs: Song[];
 }
 
 const SongList: React.FC = () => {
-  const { loading, error, data } = useQuery<Response>(GET_SONGS);
+  const { loading, error, data } = useQuery<Response>(fetchSongsQuery);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
@@ -26,16 +27,7 @@ const SongList: React.FC = () => {
         <i className="material-icons">add</i>
       </Link>
     </div>
-  )
-}
-
-const GET_SONGS = gql`
-query Songs {
-    songs {
-        id
-        title
-    }
-}
-`;
+  );
+};
 
 export default SongList;
