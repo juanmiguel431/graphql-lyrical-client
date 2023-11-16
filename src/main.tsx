@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import './styles/style.css';
 import App from './App.tsx'
 import SongList from './components/SongList.tsx';
 import SongCreate from './components/SongCreate.tsx';
