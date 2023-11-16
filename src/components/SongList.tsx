@@ -1,8 +1,9 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { Song } from '../models';
 import { Link } from 'react-router-dom';
 import { fetchSongsQuery } from '../queries';
+import { deleteSong } from '../mutations';
 
 type Response = {
   songs: Song[];
@@ -11,6 +12,8 @@ type Response = {
 const SongList: React.FC = () => {
   const { loading, error, data } = useQuery<Response>(fetchSongsQuery);
 
+  const [deleteSongMutation, state] = useMutation(deleteSong);
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
 
@@ -18,7 +21,18 @@ const SongList: React.FC = () => {
     <div>
       <ul className="collection">
         {data?.songs.map(s => (
-          <li className="collection-item" key={s.id}>{s.title}</li>
+          <li className="collection-item" key={s.id}>
+            {s.title}
+            <i
+              className="material-icons"
+              onClick={() => {
+                deleteSongMutation({
+                  variables: { id: s.id },
+                  refetchQueries: [{ query: fetchSongsQuery }]
+                });
+              }}
+            >delete</i>
+          </li>
         ))}
       </ul>
       <Link
