@@ -22,7 +22,7 @@ const SongList: React.FC = () => {
       <ul className="collection">
         {data?.songs.map(s => (
           <li className="collection-item" key={s.id}>
-            {s.title}
+            <Link to={`/songs/${s.id}`}>{s.title}</Link>
             <i
               className="material-icons"
               onClick={() => {

@@ -6,6 +6,7 @@ import './styles/style.css';
 import App from './App.tsx'
 import SongList from './components/SongList.tsx';
 import SongCreate from './components/SongCreate.tsx';
+import SongDetail from './components/SongDetail.tsx';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: '/songs/new',
         element: <SongCreate/>
+      },
+      {
+        path: '/songs/:id',
+        element: <SongDetail/>
       }
     ]
   },
