@@ -10,7 +10,7 @@ type Response = {
 }
 
 const SongList: React.FC = () => {
-  const { loading, error, data } = useQuery<Response>(fetchSongsQuery);
+  const { loading, error, data, refetch } = useQuery<Response>(fetchSongsQuery);
 
   const [deleteSongMutation, state] = useMutation(deleteSong);
 
@@ -28,7 +28,8 @@ const SongList: React.FC = () => {
               onClick={() => {
                 deleteSongMutation({
                   variables: { id: s.id },
-                  refetchQueries: [{ query: fetchSongsQuery }]
+                }).then(() => {
+                  refetch();
                 });
               }}
             >delete</i>
