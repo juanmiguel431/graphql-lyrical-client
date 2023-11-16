@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
 
 const SongCreate: React.FC = () => {
   const [songTitle, setSongTitle] = useState('');
+
+  const navigate = useNavigate();
 
   const [addSong, { data, loading, error }] = useMutation(mutation);
 
@@ -13,9 +16,20 @@ const SongCreate: React.FC = () => {
   return (
     <div>
       <h3>Create a new song</h3>
-      <form onSubmit={e => {
+      <form onSubmit={async (e) => {
         e.preventDefault();
-        addSong({ variables: { title: songTitle } });
+        try {
+          const title = songTitle.trim();
+          if (!title) {
+            return;
+          }
+
+          await addSong({ variables: { title: title } });
+          navigate('/songs');
+
+        } catch (e) {
+          console.log(e);
+        }
       }}>
         <label>Song Title:</label>
         <input
