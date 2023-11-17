@@ -3,9 +3,10 @@ import { useQuery } from '@apollo/client';
 import { fetchSongQuery } from '../queries';
 import { useParams } from 'react-router-dom';
 import { Song } from '../models';
+import LyricCreate from './LyricCreate.tsx';
+import LyricList from './LyricList.tsx';
 
-type SongDetailProps = {
-}
+type SongDetailProps = {}
 
 type Params = {
   id: string;
@@ -25,10 +26,17 @@ const SongDetail: React.FC<SongDetailProps> = (props) => {
     return 'Loading...';
   }
 
+  const song = data?.song;
+
+  if (!song) {
+    return 'Song not found';
+  }
+
   return (
     <div>
-      <h3>Song Detail</h3>
-      {data?.song.title}
+      <h3>{song.title}</h3>
+      <LyricList lyrics={song.lyrics}/>
+      <LyricCreate songId={song.id}/>
     </div>
   );
 };

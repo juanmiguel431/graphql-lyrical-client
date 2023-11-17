@@ -12,8 +12,13 @@ query Songs {
 export const fetchSongQuery = gql`
 query Song($id: ID!) {
     song(id: $id) {
-        title
         id
+        title
+        lyrics {
+            id
+            likes
+            content
+        }
     }
 }
 `;
