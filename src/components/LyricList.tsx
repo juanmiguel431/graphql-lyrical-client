@@ -24,6 +24,14 @@ const LyricList: React.FC<LyricListProps> = ({ lyrics }) => {
                 likeLyricMutation({
                   variables: { id: l.id },
                   // refetchQueries: [{ query: fetchSongQuery }] // It is not required to do this because of the caching system of Apollo Client.
+                  optimisticResponse: {
+                    likeLyric: {
+                      __typename: 'LyricType',
+                      id: l.id,
+                      likes: l.likes + 1,
+                      content: l.content
+                    }
+                  }
                 });
               }}
             >thumb_up</i>
