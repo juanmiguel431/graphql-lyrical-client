@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { addLyricToSong } from '../mutations';
-import { fetchSongQuery } from '../queries';
+// import { fetchSongQuery } from '../queries';
 
 type LyricCreateProps = {
   songId: string;
@@ -20,7 +20,7 @@ const LyricCreate: React.FC<LyricCreateProps> = ({ songId }) => {
 
     addLyricToSongMutation({
       variables: { songId: songId, content: lyric },
-      refetchQueries: [{ query: fetchSongQuery, variables: { id: songId } }]
+      // refetchQueries: [{ query: fetchSongQuery, variables: { id: songId } }]
     });
 
     setLyric('');
