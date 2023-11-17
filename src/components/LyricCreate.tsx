@@ -30,6 +30,7 @@ const LyricCreate: React.FC<LyricCreateProps> = ({ songId }) => {
   return (
     <div>
       <form onSubmit={onSubmit}>
+        <label>Add lyric</label>
         <input
           type="text"
           value={lyric}
